@@ -2,11 +2,26 @@
 
 ## Overview
 
-This API provides endpoints for managing company sales and retrieving aggregated sales data. The API is built using Express.js and MongoDB.
+This is the backend API for a CRM system. It provides endpoints to manage companies, sales, promotions, and categories. The API is built using Express.js and MongoDB.
 
 ## Base URL
 
 http://localhost:4000/api
+
+## Setup
+
+To run this project locally:
+
+1. Clone the repository.
+2. Install dependencies: `npm install` or `yarn`
+3. Create a `.env` file with the necessary environment variables (see `.env.example`).
+
+## Scripts
+
+- `npm start`: Start the server.
+- `npm run start:dev`: Start the server in development mode with nodemon.
+- `npm run lint`: Run linting.
+- `npm run lint:fix`: Fix linting errors.
 
 ## Endpoints
 
@@ -128,17 +143,38 @@ http://localhost:4000/api
   - `200 OK` on success with an array of sales summaries.
   - `404 Not Found` if no sales data is found.
 
-## Setup
+### Categories
 
-To run this project locally:
+#### Get all categories
 
-1. Clone the repository.
-2. Install dependencies: `npm install` or `yarn`
-3. Create a `.env` file with the necessary environment variables (see `.env.example`).
+-- **URL:** `/categories`
 
-## Scripts
+- **Method:** `GET`
+- **Description:** Retrieves a list of all categories, including the number of companies in each category.
+- **Response:**
+  - `200 OK` on success with an array of categories.
+  - `404 Not Found` if no categories data is found.
 
-- `npm start`: Start the server.
-- `npm run start:dev`: Start the server in development mode with nodemon.
-- `npm run lint`: Run linting.
-- `npm run lint:fix`: Fix linting errors.
+### Countries
+
+#### Get all countries
+
+-- **URL:** `/countries`
+
+- **Method:** `GET`
+- **Description:** Retrieves a list of all countries, including the number of companies in each country.
+- **Response:**
+  - `200 OK` on success with an array of countries.
+  - `404 Not Found` if no categories data is found.
+
+### Summary stats
+
+#### Get summary stats
+
+-- **URL:** `/summary-stats`
+
+- **Method:** `GET`
+- **Description:** Retrieves a summary of the total promotions, categories, new companies, and active companies.
+- **Response:**
+  - `200 OK` on success with an object containing the summary stats.
+  - `404 Not Found` if no data is found.

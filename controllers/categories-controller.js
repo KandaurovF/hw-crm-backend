@@ -1,13 +1,13 @@
 import { ctrlWrapper } from "../decorators/index.js";
 import Company from "../models/Company.js";
 
-const getAllCountries = async (req, res) => {
+const getAllCategories = async (req, res) => {
   const result = await Company.aggregate([
     {
       $group: {
         _id: {
-          countryId: "$countryId",
-          countryTitle: "$countryTitle",
+          categoryId: "$categoryId",
+          categoryTitle: "$categoryTitle",
         },
         companyCount: { $sum: 1 },
       },
@@ -15,9 +15,8 @@ const getAllCountries = async (req, res) => {
     {
       $project: {
         _id: 0,
-        countryId: "$_id.countryId",
-        countryTitle: "$_id.countryTitle",
-
+        categoryId: "$_id.categoryId",
+        categoryTitle: "$_id.categoryTitle",
         companyCount: 1,
       },
     },
@@ -25,4 +24,4 @@ const getAllCountries = async (req, res) => {
   res.json(result);
 };
 
-export default { getAllCountries: ctrlWrapper(getAllCountries) };
+export default { getAllCategories: ctrlWrapper(getAllCategories) };

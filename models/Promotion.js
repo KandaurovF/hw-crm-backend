@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import Joi from "joi";
 import { handleSaveError } from "./hooks.js";
 
@@ -17,8 +17,9 @@ const promotionSchema = new Schema(
       required: true,
     },
     companyId: {
-      type: String,
+      type: Types.ObjectId,
       required: true,
+      ref: "company",
     },
     companyTitle: {
       type: String,

@@ -22,7 +22,6 @@ const getByCompanyId = async (req, res) => {
 };
 
 const getSummary = async (req, res) => {
-  console.log("Received request for summary");
   try {
     const result = await Sale.aggregate([
       {
@@ -34,7 +33,7 @@ const getSummary = async (req, res) => {
       },
       {
         $addFields: {
-          companyId: { $toObjectId: "$_id" },
+          companyId: "$_id",
         },
       },
       {
@@ -50,8 +49,9 @@ const getSummary = async (req, res) => {
       },
       {
         $project: {
-          companyId: "$_id",
-          companyName: "$company.title",
+          _id: 0,
+          companyId: "$companyId",
+          companyTitle: { $ifNull: ["$company.title", "Unknown"] },
           totalSold: 1,
           totalIncome: 1,
         },
@@ -64,6 +64,7 @@ const getSummary = async (req, res) => {
 
     res.json(result);
   } catch (error) {
+    console.error("Error during aggregation:", error);
     res.status(500).json({ message: "Server error during aggregation" });
   }
 };
