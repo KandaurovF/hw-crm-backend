@@ -9,6 +9,7 @@ import salesRouter from "./routes/api/sales-router.js";
 import categoriesRouter from "./routes/api/categories-router.js";
 import summaryStatsRouter from "./routes/api/summaryStats-router.js";
 import countriesRouter from "./routes/api/countries-router.js";
+import citiesRouter from "./routes/api/cities-router.js";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/api/sales", salesRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/summary-stats", summaryStatsRouter);
 app.use("/api/countries", countriesRouter);
+app.use("/api/cities", citiesRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

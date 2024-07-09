@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import Joi from "joi";
 import { handleSaveError } from "./hooks.js";
 
@@ -28,24 +28,19 @@ const companySchema = new Schema(
       required: true,
     },
     categoryId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
-    },
-    categoryTitle: {
-      type: String,
-      required: true,
+      ref: "category",
     },
     countryId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
+      ref: "country",
     },
-    countryTitle: {
-      type: String,
+    cityId: {
+      type: Schema.Types.ObjectId,
       required: true,
-    },
-    city: {
-      type: String,
-      required: true,
+      ref: "city",
     },
     avatar: {
       type: String,
@@ -65,12 +60,10 @@ export const companyAddSchema = Joi.object({
     .required(),
   joinedDate: Joi.date().required(),
   hasPromotions: Joi.boolean().required(),
-  categoryId: Joi.string().required(),
   categoryTitle: Joi.string().required(),
-  countryId: Joi.string().required(),
   countryTitle: Joi.string().required(),
-  city: Joi.string().required(),
-  avatar: Joi.string().uri().default(""),
+  cityTitle: Joi.string().required(),
+  avatar: Joi.string().uri().allow("").default(""),
 });
 
 const Company = model("company", companySchema);

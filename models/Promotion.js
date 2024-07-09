@@ -21,10 +21,6 @@ const promotionSchema = new Schema(
       required: true,
       ref: "company",
     },
-    companyTitle: {
-      type: String,
-      required: true,
-    },
     avatar: {
       type: String,
       default: "",
@@ -40,7 +36,6 @@ export const promotionAddSchema = Joi.object({
   description: Joi.string().required(),
   discount: Joi.number().required(),
   companyId: Joi.string().required(),
-  companyTitle: Joi.string().required(),
   avatar: Joi.string().uri().default(""),
 });
 

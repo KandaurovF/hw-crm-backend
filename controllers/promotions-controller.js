@@ -3,8 +3,18 @@ import { ctrlWrapper } from "../decorators/index.js";
 import Promotion from "../models/Promotion.js";
 
 const getAll = async (req, res) => {
-  const result = await Promotion.find();
-  res.json(result);
+  const result = await Promotion.find().populate("companyId", "title");
+
+  const formattedPromotions = result.map((promotion) => ({
+    _id: promotion._id,
+    title: promotion.title,
+    description: promotion.description,
+    discount: promotion.discount,
+    companyId: promotion.companyId._id,
+    companyTitle: promotion.companyId.title,
+    avatar: promotion.avatar,
+  }));
+  res.json(formattedPromotions);
 };
 
 const getById = async (req, res) => {

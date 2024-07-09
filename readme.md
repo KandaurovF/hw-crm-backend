@@ -165,7 +165,19 @@ To run this project locally:
 - **Description:** Retrieves a list of all countries, including the number of companies in each country.
 - **Response:**
   - `200 OK` on success with an array of countries.
-  - `404 Not Found` if no categories data is found.
+  - `404 Not Found` if no countries data is found.
+
+### Cities
+
+#### Get all cities
+
+-- **URL:** `/cities`
+
+- **Method:** `GET`
+- **Description:** Retrieves a list of all cities, including the number of companies and the names of companies in each city of each country.
+- **Response:**
+  - `200 OK` on success with an array of cities.
+  - `404 Not Found` if no cities data is found.
 
 ### Summary stats
 

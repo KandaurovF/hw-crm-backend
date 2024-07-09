@@ -1,11 +1,12 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import Joi from "joi";
 
 const saleSchema = new Schema(
   {
     companyId: {
-      type: String,
+      type: Types.ObjectId,
       required: true,
+      ref: "company",
     },
     sold: {
       type: Number,

@@ -14,11 +14,5 @@ salesRouter.get(
   isValidId,
   salesController.getByCompanyId
 );
-// salesRouter.post(
-//   "/",
-//   isEmptyBody,
-//   companyAddValidate,
-//   salesController.add
-// );
 
 export default salesRouter;
